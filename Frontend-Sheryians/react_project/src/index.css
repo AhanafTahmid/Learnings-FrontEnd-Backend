@@ -1,0 +1,10 @@
+
+@import "tailwindcss";
+
+button{
+    background-color: tomato;
+    padding: 15px 10px;
+}
+
+
+
