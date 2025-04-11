@@ -1,1 +1,1 @@
-## Practice / Learnings from all the Sources
+## Learnings from all the Sources
