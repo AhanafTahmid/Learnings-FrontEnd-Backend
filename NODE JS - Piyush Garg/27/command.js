@@ -12,9 +12,9 @@ const commands = [
 
   try {
     console.log('Started refreshing application (/) commands.');
-
-    await rest.put(Routes.applicationCommands(process.env.client_id), { body: commands });
-
+  
+    await rest.put(Routes.applicationCommands('1384597432138072074'), { body: commands });
+  
     console.log('Successfully reloaded application (/) commands.');
   } catch (error) {
     console.error(error);
