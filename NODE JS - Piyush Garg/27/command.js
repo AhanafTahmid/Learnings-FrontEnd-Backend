@@ -6,7 +6,7 @@ const commands = [
     },
   ];
 
-  const TOKEN = "MTM4NDU5NzQzMjEzODA3MjA3NA.GmiB0a.dTPFWVJUmykdiKTeA5kQbT3wBuZMZFTvPfoUIg";
+  const TOKEN =  process.env.TOKEN;
 
   const rest = new REST({ version: '10' }).setToken(TOKEN);
 

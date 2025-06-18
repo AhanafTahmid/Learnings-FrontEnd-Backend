@@ -1,5 +1,8 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -32,5 +35,5 @@ client.on("messageCreate", message => {
   }
   //console.log("Message received:", message.content);
 });
-const TOKEN = "MTM4NDU5NzQzMjEzODA3MjA3NA.GmiB0a.dTPFWVJUmykdiKTeA5kQbT3wBuZMZFTvPfoUIg";
+const TOKEN = process.env.DISCORD_TOKEN;
 client.login(TOKEN);
