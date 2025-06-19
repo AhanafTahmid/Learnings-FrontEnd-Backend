@@ -1,0 +1,1 @@
+I know how to deploy, did not do it cause it's a waste of time
