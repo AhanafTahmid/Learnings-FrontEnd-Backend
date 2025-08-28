@@ -7,20 +7,22 @@ type MockUser = {
 };
 
 export default async function Users() {
-  const authObj = await auth();
-  const userObj = await currentUser();
+  await auth();
+  await currentUser();
 
-  console.log({ authObj });
-  console.log({ userObj });
+  new Promise((resolve) => setTimeout(resolve, 2000));
 
-  const res = await fetch("https://66974b0d02f3150fb66d25c5.mockapi.io/users");
+  // console.log({ authObj });
+  // console.log({ userObj });
+
+  const res = await fetch("https://68b0cb003b8db1ae9c04e57a.mockapi.io/mockuserpractice");
   const users = await res.json();
 
   async function addUser(formData: FormData) {
     "use server";
     const name = formData.get("name");
     const res = await fetch(
-      "https://66974b0d02f3150fb66d25c5.mockapi.io/users",
+      "https://68b0cb003b8db1ae9c04e57a.mockapi.io/mockuserpractice",
       {
         method: "POST",
         headers: {
@@ -30,7 +32,8 @@ export default async function Users() {
       }
     );
     const newUser = await res.json();
-    console.log(newUser);
+    console.log('hola amigos - ', newUser);
+    //notun users add kore dibe without loading revalidatepath()
     revalidatePath("/mock-users");
   }
 
