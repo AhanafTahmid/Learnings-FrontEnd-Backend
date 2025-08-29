@@ -1,4 +1,4 @@
-import IconCard from "@/components/icon-card";
+import IconCard from "./icon-card";
 import getTools from "@/lib/getTools";
 
 const ToolsCards = async () => {

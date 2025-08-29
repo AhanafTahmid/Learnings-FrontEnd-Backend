@@ -1,4 +1,4 @@
-import ToolsCards from "@/components/tools-cards";
+import ToolsCards from "../../components/tools-cards";
 
 export default function Home() {
     return (
