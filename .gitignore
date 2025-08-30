@@ -1,7 +1,4 @@
-**/node_modules/
-**/.env
-
-# **/ means “any directory, at any depth”
-codesistency-MERN-Stack-Tutorial-with-Deployment /codesistency-gitclone/mern-crash-course
+node_modules
+.env
 .DS_Store
 .next

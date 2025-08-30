@@ -1,15 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
-import dotenv from "dotenv";
 import path from "path";
 
 import productRoutes from "./routes/productRoutes.js";
 import { sql } from "./config/db.js";
 import { aj } from "./lib/arcjet.js";
 
-dotenv.config();
+// console.log(process.env.ARCJET_KEY)
 
 const app = express();
 const PORT = process.env.PORT || 3000;
