@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redis URL Shortener</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px; }
+        input[type="url"] { width: 400px; padding: 10px; }
+        button { padding: 10px 20px; background: #007cba; color: white; border: none; }
+        .result { margin: 20px 0; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+        .stats { background: #e8f4f8; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🔗 URL Shortener (Redis Demo)</h1>
+    
+    <form id="urlForm">
+        <input type="url" id="originalUrl" placeholder="Enter URL to shorten" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+    
+    <div id="result"></div>
+    <div id="analytics"></div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('originalUrl').value;
+            
+            const response = await fetch('/shorten', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url })
+            });
+            
+            const data = await response.json();
+            document.getElementById('result').innerHTML = `
+                <div class="result">
+                    <strong>Shortened URL:</strong> 
+                    <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>
+                    <br><small>Original: ${data.originalUrl}</small>
+                </div>
+            `;
+            
+            loadAnalytics();
+        });
+
+        async function loadAnalytics() {
+            const response = await fetch('/analytics');
+            const data = await response.json();
+            document.getElementById('analytics').innerHTML = `
+                <div class="stats">
+                    <h3>📊 Analytics (from Redis)</h3>
+                    <p>Total URLs created: ${data.totalUrls}</p>
+                    <p>Total clicks: ${data.totalClicks}</p>
+                </div>
+            `;
+        }
+
+        // Load analytics on page load
+        loadAnalytics();
+    </script>
+</body>
+</html>
