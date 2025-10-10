@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <input id="input" type="text" placeholder="Type message">
+  <button id="btn">Send</button>
+  <pre id="log"></pre>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8080');
+
+    const log = (msg) => {
+      document.getElementById('log').textContent += msg + '\n';
+    };
+
+    socket.addEventListener('open', () => {
+      log('WebSocket open' + '\n');
+    });
+
+    socket.addEventListener('message', (ev) => {
+      log('Received from server: ' + ev.data + '\n');
+    });
+
+    socket.addEventListener('close', () => {
+      log('WebSocket closed');
+    });
+
+    socket.addEventListener('error', (err) => {
+      log('WebSocket error: ' + err);
+    });
+
+    document.getElementById('btn').addEventListener('click', () => {
+      const msg = document.getElementById('input').value;
+      socket.send(msg);
+      log('Sent: ' + msg);
+    });
+  </script>
+</body>
+</html>
